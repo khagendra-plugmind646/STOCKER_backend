@@ -1,13 +1,13 @@
-const express = require("express");
-const {
+import express from 'express';
+import {
   createProduct,
   getAllProducts,
   getSingleProduct,
   deleteProduct,
   updateProduct,
-} = require("../controllers/productController");
-const protect = require("../middleWare/authMiddleware");
-const { upload } = require("../utils/fileUpload");
+} from '../controllers/productController.js';
+import protect from '../middleWare/authMiddleware.js';
+import { upload } from '../utils/fileUpload.js';
 
 const router = express.Router();
 
@@ -16,4 +16,5 @@ router.patch("/:id", protect, upload.single("image"), updateProduct);
 router.get("/", protect, getAllProducts);
 router.get("/:id", protect, getSingleProduct);
 router.delete("/:id", protect, deleteProduct);
-module.exports = router;
+
+export default router;
